@@ -1,0 +1,324 @@
+<div class="marquee-container">
+    <div class="marquee-text">
+        ⚠️ Please review your application carefully. Once the payment is completed, the application form will be locked
+        and no further changes will be allowed.
+    </div>
+    <!-- <div class="marquee-text">
+        ⚠️ After successful payment, the application form will be locked and cannot be edited.
+    </div> -->
+</div>
+
+<div class="top-actions">
+    <div class="application-status mt-2">
+        <strong>Application Status:</strong>
+        <span [ngClass]="{
+      'status-draft': applicationStatus === 'DRAFT',
+      'status-submitted': applicationStatus === 'SUBMITTED',
+      'status-paid': applicationStatus === 'PAID'
+    }">
+            {{ applicationStatus }}
+        </span>
+        
+        <!-- Download Report (Only After Payment) -->
+        <button *ngIf="applicationStatus === 'PAID'" class="btn btn-success" (click)="downloadApplication()">
+            Download Application Report
+        </button>
+
+    </div>
+</div>
+
+
+<div class="preview-container">
+
+    <h2 class="preview-title">Application Preview</h2>
+
+    <div class="Priview-page">
+        <form [formGroup]="previewForm">
+
+            <!-- Application Info -->
+            <div class="app-info-box">
+                <p><strong>Registration Number:</strong> {{ appNo }}</p>
+                <p><strong>Email Id:</strong> {{ email }}</p>
+                <p><strong>Mobile Number:</strong> {{ mobile }}</p>
+            </div>
+            <!-- Rest of your preview form -->
+
+            <!-- PERSONAL DETAILS -->
+
+            <div class="section-title">Candidate Name (As mentioned in SSC Marksheet):</div>
+
+            <div class="preview-grid">
+                <div class="preview-box">
+                    <div class="label">Full Name (As per SSC Marksheet)</div>
+                    <div class="value">{{previewForm.value.fullName}}</div>
+                </div>
+
+
+                <div class="preview-box">
+                    <div class="label">First Name</div>
+                    <div class="value">{{previewForm.value.firstName}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Father's Name / Middle Name</div>
+                    <div class="value">{{previewForm.value.middleName}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Surname</div>
+                    <div class="value">{{previewForm.value.lastName}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Mother's Name</div>
+                    <div class="value">{{previewForm.value.motherName}}</div>
+                </div>
+
+            </div>
+            <!-- ADDRESS -->
+
+            <div class="section-title">Address for Communication:</div>
+            <div class="preview-grid">
+                <div class="preview-box">
+                    <div class="label">Address Line 1</div>
+                    <div class="value">{{previewForm.value.address1}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Address Line 2</div>
+                    <div class="value">{{previewForm.value.address2}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Address Line 3</div>
+                    <div class="value">{{previewForm.value.address3}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">City</div>
+                    <div class="value">{{previewForm.value.city}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">District</div>
+                    <div class="value">{{previewForm.value.district}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">State</div>
+                    <div class="value">{{previewForm.value.state}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Pin Code</div>
+                    <div class="value">{{previewForm.value.pin}}</div>
+                </div>
+            </div>
+
+            <!-- PERSONAL INFO -->
+
+            <div class="section-title">Personal Information:</div>
+            <div class="preview-grid">
+                <div class="preview-box">
+                    <div class="label">Aadhaar No.</div>
+                    <div class="value">{{previewForm.value.aadhaar}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Gender</div>
+                    <div class="value">{{previewForm.value.gender}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Divyangjan</div>
+                    <div class="value">{{previewForm.value.divyang}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Orphan</div>
+                    <div class="value">{{previewForm.value.orphan}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Date of Birth (as per School Leaving Certificate)*</div>
+                    <div class="value">{{ previewForm.value.dob | date:'dd MMM yyyy' }}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Age: (Age as on 01/08/2026)</div>
+                    <div class="value">{{previewForm.value.age}}</div>
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+
+            <div class="section-title">Category Details:</div>
+            <div class="preview-grid">
+                <div class="preview-box">
+                    <div class="label">Category</div>
+                    <div class="value">{{previewForm.value.category}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Sub Caste</div>
+                    <div class="value">{{previewForm.value.subCaste}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Do you belong to Minority Community</div>
+                    <div class="value">{{previewForm.value.minority}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Domicile of Maharashtra</div>
+                    <div class="value">{{previewForm.value.domicile}}</div>
+                </div>
+            </div>
+            <!-- EXAM DETAILS -->
+
+            <div class="section-title">Examination Details:</div>
+            <div class="preview-grid">
+                <div class="preview-box">
+                    <div class="label">Optional Subject</div>
+                    <div class="value">{{previewForm.value.optionalSubject}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Examination Centres</div>
+                    <div class="value">{{previewForm.value.examCenter}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Disputed Maharashtra-Karnataka Border</div>
+                    <div class="value">{{previewForm.value.borderDispute}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Family Annual Income</div>
+                    <div class="value">{{previewForm.value.familyIncome}}</div>
+                </div>
+            </div>
+            <!-- TRAINING -->
+
+            <div class="section-title">
+                Have you previously taken advantage of any of these organizations for training?
+            </div>
+
+            <label>
+                तुम्ही यापूर्वी प्रशिक्षणासाठी यापैकी कोणत्याही संस्थेचा लाभ घेतला आहात का?
+            </label>
+
+            <!-- YES -->
+            <div *ngIf="data?.isTrainedBefore === 'Yes'">
+
+                <table class="training-table">
+
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                Institutions for training before: <b>Yes</b>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Institute Name</th>
+                            <th>Training Year</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let inst of data?.institutions || []; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ inst.instituteName }}</td>
+                            <td>{{ inst.trainingYear }}</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- NO -->
+            <div *ngIf="data?.isTrainedBefore === 'No'">
+
+                <table class="training-table">
+                    <tr>
+                        <th>Institutions for training before</th>
+                        <td>No</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <!-- EDUCATION -->
+
+            <div class="section-title">Education Details:</div>
+            <div class="preview-grid">
+                <div class="preview-box">
+                    <div class="label">Educational Qualification</div>
+                    <div class="value">{{previewForm.value.qualification}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Year of Passing</div>
+                    <div class="value">{{previewForm.value.passingYear}}</div>
+                </div>
+
+                <div class="preview-box">
+                    <div class="label">Name of the University</div>
+                    <div class="value">{{previewForm.value.university}}</div>
+                </div>
+            </div>
+
+
+            <!-- PHOTO SIGNATURE -->
+
+            <div class="section-title">Photo & Signature:</div>
+            <div class="preview-grid"></div>
+            <div class="photo-row">
+
+                <div>
+
+                    <div class="label">Photograph</div>
+
+                    <img *ngIf="photoUrl" [src]="photoUrl" class="preview-img" crossorigin="anonymous">
+
+                </div>
+
+
+                <div>
+
+                    <div class="label">Signature</div>
+
+                    <img *ngIf="signatureUrl" [src]="signatureUrl" class="preview-img" crossorigin="anonymous">
+
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="button-group">
+        <div class="preview-grid"></div>
+        <!-- Edit -->
+        <button (click)="editApplication()" *ngIf="applicationStatus !== 'PAID'">
+            Edit
+        </button>
+
+        <!-- Final Submit -->
+        <button class="btn-submit" (click)="finalSubmit()" *ngIf="applicationStatus !== 'PAID'">
+            Final Submit
+        </button>
+
+
+
+    </div>
+
+</div>

@@ -1,5 +1,18 @@
 # SiacCetFrontend
 
+## Setup
+
+### Node & Package Manager
+This project requires:
+
+- Node.js **20.19.0**
+- npm **10.8.2**
+
+If you are using **nvm (Windows)**:
+```bash
+nvm use 20.19.0
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
 
 ## Development server

@@ -1,0 +1,170 @@
+/* =========================
+   HEADER WRAPPER
+========================= */
+.gov-header {
+  background-color: #f8fafc;
+  border-bottom: 4px solid #1e3a8a;
+  position: relative;
+}
+
+/* =========================
+   TOP ROW (LOGOS + TEXT)
+========================= */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 32px 12px;
+}
+
+/* =========================
+   LOGOS
+========================= */
+.logo-section {
+  flex: 0 0 auto;
+}
+
+.gov-logo {
+  height: 90px;
+  /* 🔥 Bigger logos */
+  width: auto;
+}
+
+.logo-section-2 {
+  position: absolute;
+  top: 5px;
+  /* adjust vertical position */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  /* keep above content */
+}
+
+
+
+.gov-logo-2 {
+  height: 40px;
+  width: auto;
+  padding-left: 85%;
+}
+
+/* =========================
+   CENTER TEXT
+========================= */
+.content-section {
+  flex: 1;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.header-text span {
+  display: block;
+  line-height: 1.45;
+}
+
+/* Titles */
+.gov-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
+  
+}
+
+.inst-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.exam-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #065f46;
+  margin-top: 4px;
+}
+
+.exam-centers {
+  font-size: 13px;
+  color: #475569;
+  margin-top: 4px;
+}
+
+/* =========================
+   NAVIGATION BAR
+========================= */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  padding: 5px 0;
+  background-color: #1e3a8a;
+}
+
+/* =========================
+   LOGOUT LINK (LIKE NAV)
+========================= */
+.header-right {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 6px 2px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+/* Hover same as nav */
+.header-right:hover {
+  color: #fde047;
+  display: flex;
+  align-items: center;
+}
+
+/* Optional active look when clicked */
+.header-right:active {
+  border-bottom: 3px solid #fde047;
+}
+
+
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  background-color: #1e3a8a;
+}
+
+/* Center nav links (future use) */
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+}
+
+/* Push logout to right */
+.nav-right {
+  margin-left: auto;
+}
+
+
+.logout-link {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 6px 2px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  color: #fde047;
+}
+
+.logout-link:active {
+  border-bottom: 3px solid #fde047;
+}

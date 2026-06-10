@@ -1,0 +1,409 @@
+/* =========================
+   Page Title
+========================= */
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+/* =========================
+   Form Container
+========================= */
+form {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 8px 18px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   Messages
+========================= */
+.error-msg {
+  color: #dc2626;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.success-msg {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 6px;
+  text-align: left;
+}
+
+/* =========================
+   Form Field
+========================= */
+.form-field {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+/* =========================
+   Labels
+========================= */
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.required {
+  color: #dc2626;
+}
+
+/* =========================
+   Inputs & Select
+========================= */
+input,
+select {
+  width: 100%;
+  padding: 9px;
+  margin-bottom: 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 1px rgba(29, 78, 216, 0.2);
+}
+
+/* =========================
+   Invalid Field
+========================= */
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border-color: #dc2626;
+}
+
+
+/* =========================
+   🔥 OTP FULL SINGLE LINE UI (FINAL)
+========================= */
+.mobile-otp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: nowrap;
+  /* keep everything in one line */
+  overflow-x: auto;
+  /* scroll on small screen */
+  padding-bottom: 4px;
+}
+
+/* Mobile input */
+.mobile-otp-row input[formControlName="mobile"] {
+  flex: 1 1 180px;
+  min-width: 110px;
+  margin-bottom: 0;
+}
+
+/* OTP input */
+.mobile-otp-row input[formControlName="otp"] {
+  flex: 0 0 90px;
+  max-width: 90px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/* All OTP buttons */
+.mobile-otp-row .otp-btn,
+.mobile-otp-row .verify-btn,
+.mobile-otp-row .resend-btn {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 8px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-top: 0;
+  border-radius: 5px;
+}
+
+/* Timer + expiry */
+.otp-timer,
+.otp-expired {
+  width: 100%;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.otp-timer {
+  color: #16a34a;
+}
+
+.otp-expired {
+  color: #dc2626;
+}
+
+/* Button colors */
+.otp-btn {
+  background-color: #0f766e;
+}
+
+.otp-btn:hover {
+  background-color: #115e59;
+}
+
+.verify-btn {
+  background-color: #16a34a;
+}
+
+.verify-btn:hover {
+  background-color: #15803d;
+}
+
+.resend-btn {
+  background-color: #ea580c;
+}
+
+.resend-btn:hover {
+  background-color: #c2410c;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .mobile-otp-row {
+    gap: 6px;
+  }
+
+  .mobile-otp-row input[formControlName="mobile"] {
+    flex: 100%;
+    min-width: 100%;
+  }
+
+  .mobile-otp-row input[formControlName="otp"] {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .mobile-otp-row .verify-btn,
+  .mobile-otp-row .resend-btn {
+    flex: 1;
+  }
+}
+
+/* =========================
+   Button Colors
+========================= */
+.otp-btn {
+  background-color: #0f766e;
+}
+
+.otp-btn:hover {
+  background-color: #115e59;
+}
+
+.verify-btn {
+  background-color: #16a34a;
+}
+
+.verify-btn:hover {
+  background-color: #15803d;
+}
+
+/* =========================
+   Responsive Fix (Important)
+========================= */
+@media (max-width: 480px) {
+  .mobile-otp-row {
+    flex-wrap: wrap;
+  }
+
+  .mobile-otp-row input[formControlName="mobile"] {
+    flex: 100%;
+  }
+
+  .mobile-otp-row input[formControlName="otp"] {
+    flex: 1;
+  }
+
+  .mobile-otp-row button {
+    flex: 1;
+  }
+}
+
+
+/* =========================
+   🔥 PASSWORD ROW
+========================= */
+.password-row {
+  display: flex;
+  gap: 10px;
+}
+
+.password-box {
+  flex: 1;
+  position: relative;
+}
+
+.password-box input {
+  padding-right: 35px;
+  margin-bottom: 0;
+}
+
+.password-box span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  color: #475569;
+}
+
+.password-box span:hover {
+  color: #1d4ed8;
+}
+
+/* =========================
+   Validation Messages
+========================= */
+small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+/* =========================
+   Buttons (Default)
+========================= */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  background-color: #1d4ed8;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+/* =========================
+   🔥 OTP Buttons (Inline)
+========================= */
+
+
+/* Send OTP */
+.otp-btn {
+  background-color: #0f766e;
+}
+
+.otp-btn:hover {
+  background-color: #115e59;
+}
+
+/* Verify OTP */
+.verify-btn {
+  background-color: #16a34a;
+}
+
+.verify-btn:hover {
+  background-color: #15803d;
+}
+
+/* Disabled */
+button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* =========================
+   Links
+========================= */
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Login Link
+========================= */
+.login-link {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #475569;
+}
+
+/* =========================
+   Scroll Handling
+========================= */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.registration-wrapper {
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.registration-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.registration-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+
+/* =========================
+   OTP Timer + Expiry + Resend
+========================= */
+.otp-timer,
+.otp-expired {
+  width: 100%;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  flex-basis: 100%;
+}
+
+.otp-timer {
+  color: #16a34a;
+}
+
+.otp-expired {
+  color: #dc2626;
+}
+
+.resend-btn {
+  background-color: #ea580c;
+}
+
+.resend-btn:hover {
+  background-color: #c2410c;
+}

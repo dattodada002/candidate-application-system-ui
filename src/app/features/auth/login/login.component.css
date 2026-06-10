@@ -1,0 +1,178 @@
+.login-page {
+  /* min-height: calc(100vh - 140px); */
+  /* footer safe gap */
+  padding: 10px 12px 60px; /* bottom gap before footer */
+  box-sizing: border-box;
+}
+
+/* =========================
+   Page Title
+========================= */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+/* =========================
+   Form Container
+========================= */
+form {
+  max-width: 380px;
+  margin: 0 auto 20px;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   Labels
+========================= */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* =========================
+   Inputs
+========================= */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 1px rgba(29, 78, 216, 0.3);
+}
+
+/* =========================
+   Password Field (Eye Fix)
+========================= */
+.password-field {
+  position: relative;
+  /* 🔥 REQUIRED */
+  width: 100%;
+}
+
+.password-field input {
+  padding-right: 40px;
+  /* space for eye */
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  /* prevents drop */
+  color: #475569;
+  user-select: none;
+}
+
+.eye:hover {
+  color: #1d4ed8;
+}
+
+/* =========================
+   Error Messages
+========================= */
+small {
+  color: #dc2626;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+/* =========================
+   Submit Button
+========================= */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: rgb(29, 78, 216);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1b5e20;
+}
+
+/* =========================
+   Safe Links (NO block)
+========================= */
+a {
+  color: #1976d2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Login Link (Single Line)
+========================= */
+.login-link {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.login-link a {
+  font-weight: 600;
+}
+
+
+.register-link {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.register-link a {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.forgot-link {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+

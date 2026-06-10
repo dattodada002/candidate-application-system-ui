@@ -1,0 +1,127 @@
+<h2>Student Registration</h2>
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <!-- ERROR -->
+  <div class="error-msg" *ngIf="errorMsg">
+    {{ errorMsg }}
+  </div>
+
+  <!-- Year -->
+  <div class="form-field">
+    <label>Year *</label>
+    <select formControlName="year">
+      <option value="" disabled>-- Select Year --</option>
+      <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+    </select>
+  </div>
+
+  <!-- Email -->
+  <div class="form-field">
+    <label>Email *</label>
+    <input type="email" formControlName="email" placeholder="Please Enter email" />
+  </div>
+
+
+  <!-- 🔥 MOBILE + OTP IN ONE LINE -->
+  <div class="form-field">
+    <label>Mobile Number *</label>
+
+    <div class="mobile-otp-row">
+
+      <!-- MOBILE -->
+      <input type="text" formControlName="mobile" maxlength="10" placeholder="Enter mobile" />
+
+      <!-- SEND OTP -->
+      <button *ngIf="!otpSent" type="button" class="otp-btn" (click)="sendOtp()">
+        Send OTP
+      </button>
+
+      <!-- OTP FIELD AFTER SEND -->
+      <input *ngIf="otpSent" type="text" formControlName="otp" maxlength="6" placeholder="Enter OTP"
+        [disabled]="f['otpVerified'].value" />
+
+      <!-- VERIFY -->
+      <button *ngIf="otpSent" type="button" class="verify-btn" (click)="verifyOtp()"
+        [disabled]="f['otpVerified'].value">
+        {{ f['otpVerified'].value ? 'Verified ✔' : 'Verify' }}
+      </button>
+
+      <!-- TIMER -->
+      <div *ngIf="otpSent && otpTimer > 0" class="otp-timer">
+        OTP expires in {{ otpTimer }} sec
+      </div>
+
+      <!-- EXPIRED -->
+      <div *ngIf="otpSent && otpExpired" class="otp-expired">
+        OTP expired. Please resend OTP.
+      </div>
+
+      <!-- RESEND -->
+      <button *ngIf="otpSent" type="button" class="resend-btn" (click)="resendOtp()"
+        [disabled]="otpTimer > 0 || f['otpVerified'].value">
+        Resend OTP
+      </button>
+
+    </div>
+
+    <!-- SUCCESS -->
+    <div *ngIf="f['otpVerified']?.value" class="success-msg">
+      OTP Verified ✔
+    </div>
+  </div>
+
+  <!-- 🔥 PASSWORD IN ONE LINE -->
+  <div class="form-field">
+    <label>Password *</label>
+
+    <div class="password-row">
+      <!-- Password -->
+      <div class="password-box">
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password"
+          maxlength="12" minlength="8" />
+        <span (click)="togglePassword()">👁️</span>
+      </div>
+
+      <!-- Confirm -->
+      <div class="password-box">
+        <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword"
+          placeholder="Confirm Password" maxlength="12" minlength="8" />
+        <span (click)="toggleConfirmPassword()">👁️</span>
+      </div>
+    </div>
+
+    <!-- VALIDATIONS -->
+    <div *ngIf="(f['password']?.touched || f['password']?.dirty) && f['password'].invalid">
+      <small *ngIf="f['password']?.errors?.['required']">
+        Password required
+      </small>
+
+      <small *ngIf="f['password'].errors?.['minlength']">
+        Minimum 8 characters required
+      </small>
+
+      <small *ngIf="f['password'].errors?.['maxlength']">
+        Maximum 12 characters allowed
+      </small>
+
+      <small *ngIf="f['password'].errors?.['pattern']">
+        Password must include uppercase, lowercase, number & special character
+      </small>
+    </div>
+
+    <small *ngIf="registrationForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
+      Passwords do not match
+    </small>
+  </div>
+
+  <!-- SUBMIT -->
+  <button type="submit" class="register-btn">
+    Register
+  </button>
+  <p class="login-link">
+    Already registered?
+    <a routerLink="/login">Click here to Login</a>
+  </p>
+
+</form>

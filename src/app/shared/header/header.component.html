@@ -1,0 +1,48 @@
+<header class="gov-header">
+      <div class="logo-section-2">
+      <img src="assets/images/satyamev-jayate-1.png" class="gov-logo-2" />
+    </div>
+  <!-- TOP ROW -->
+  <div class="header-container">
+    <div class="logo-section">
+      <img src="assets/images/maharashtra-logo.png" class="gov-logo" />
+    </div>
+
+    <div class="content-section">
+      <div class="header-text">
+        <span class="gov-title">Government of Maharashtra</span>
+        <span class="inst-title">STATE INSTITUTE FOR ADMINISTRATIVE CAREERS (SIAC)</span>
+        <span class="exam-title">
+          Application Form For Entrance Examination (SIAC-CET-2026-2027)
+        </span>
+      </div>
+    </div>
+
+    <!-- <div class="logo-section">
+      <img src="assets/images/satyamev-jayate-1.png" class="gov-logo" />
+    </div> -->
+  </div>
+
+
+  <!-- NAV BAR -->
+  <!-- <nav class="main-nav"> -->
+  <!-- <a class="logout-link" (click)="goHome()">Home</a> -->
+  <!-- <a class="logout-link" routerLink="/about" routerLinkActive="active">About Us</a>
+    <a class="logout-link" routerLink="/notices" routerLinkActive="active">Notices</a>
+    <a class="logout-link" routerLink="/contact" routerLinkActive="active">Contact</a> -->
+  <!-- <a *ngIf="isLoggedIn" class="header-right" (click)="logout()">Logout</a> -->
+  <!-- </nav> -->
+
+  <nav class="main-nav">
+
+    <!-- Empty center area (future nav links) -->
+    <div class="nav-center"></div>
+
+    <!-- Right side logout -->
+    <div class="nav-right" *ngIf="isLoggedIn">
+      <a class="logout-link" (click)="logout()">Logout</a>
+    </div>
+
+  </nav>
+
+</header>

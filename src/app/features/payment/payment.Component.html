@@ -1,0 +1,37 @@
+<div class="payment-container">
+
+  <div>
+    <button type="buttion" class="back-buttion" (click)="goOnPriviespage()">← Back to Form</button>
+  </div>
+
+  <h2>Application Fee Payment</h2>
+
+  <!-- <div class="payment-info">
+    <p>Application No: <span>{{ appNo }}</span></p>
+    <p>Status: 
+      <span [ngClass]="{
+        'status-draft': applicationStatus === 'DRAFT',
+        'status-submitted': applicationStatus === 'SUBMITTED',
+        'status-paid': applicationStatus === 'PAID'
+      }">
+        {{ applicationStatus }} 
+      
+      </span>
+    </p>
+  </div> -->
+
+  <div class="amount-box">
+    <h3>Amount Payable: ₹1</h3>
+  </div>
+
+  <button class="pay-btn" (click)="payNow()" [disabled]="isProcessing || applicationStatus === 'PAID'">
+    {{ isProcessing ? 'Processing...' : (applicationStatus === 'PAID' ? 'Already Paid' : 'Pay Now') }}
+  </button>
+  <br><br><br><br>
+
+  <div class="payment-note">
+    Secure payment • Do not refresh the page
+  </div>
+  <br>
+  <br><br><br><br> <br><br><br><br> <br><br><br><br> <br><br><br><br>
+</div>

@@ -1,0 +1,648 @@
+<div class="marquee-container">
+  <div class="marquee-text">
+    ⚠️ Please review your application carefully. Once the payment is completed, the application form will be locked and
+    no further changes will be allowed.
+  </div>
+  <!-- <div class="marquee-text">
+    ⚠️ After successful payment, the application form will be locked and cannot be edited.
+  </div> -->
+</div>
+
+<div class="top-actions">
+  <div class="application-status mt-2">
+    <strong>Application Status:</strong>
+    <span [ngClass]="{
+      'status-draft': applicationStatus === 'DRAFT',
+      'status-submitted': applicationStatus === 'SUBMITTED',
+      'status-paid': applicationStatus === 'PAID'
+    }">
+      {{ applicationStatus }}
+    </span>
+  </div>
+</div>
+
+<h2>Application form</h2>
+
+<div *ngIf="isLocked" style="color:red;font-weight:bold">
+  Application Locked After Payment
+</div>
+
+<div class="personal-page">
+  <form [formGroup]="personalInfoForm" (ngSubmit)="onSubmit()">
+
+    <!-- =============================
+       APPLICATION INFO
+  ============================== -->
+    <div class="app-info-box">
+      <p><strong>Registration Number:</strong> {{ appNo }}</p>
+      <p><strong>Email Id:</strong> {{ email }}</p>
+      <p><strong>Mobile Number:</strong> {{ mobile }}</p>
+    </div>
+
+    <!-- =============================
+       1. CANDIDATE NAME
+  ============================== -->
+    <fieldset>
+      <legend>1. Candidate Name (As mentioned in SSC Marksheet)</legend>
+
+      <div class="form-control">
+        <label>Full Name (As per SSC Marksheet)*</label>
+        <input formControlName="fullName" (input)="toUpper($event, 'fullName')"
+          placeholder="Enter full name as per SSC marksheet" />
+        <small class="error-text" *ngIf="isInvalid('fullName','required')">Full Name is required</small>
+        <small class="error-text" *ngIf="isInvalid('fullName','pattern')">Only alphabets allowed</small>
+      </div>
+
+      <div class="form-control">
+        <label>First Name*</label>
+        <input formControlName="firstName" (input)="toUpper($event, 'firstName')" placeholder="Enter First Name" />
+        <small class="error-text" *ngIf="isInvalid('firstName','required')">First Name is required</small>
+        <small class="error-text" *ngIf="isInvalid('firstName','pattern')">Only alphabets allowed</small>
+      </div>
+
+      <div class="form-control">
+        <label>Father's / Middle Name*</label>
+        <input formControlName="middleName" (input)="toUpper($event, 'middleName')"
+          placeholder="Enter Father's Name / Middle Name" />
+        <small class="error-text" *ngIf="isInvalid('middleName','required')">Father's / Middle Name is Required</small>
+        <small class="error-text" *ngIf="isInvalid('middleName','pattern')">Only alphabets allowed</small>
+      </div>
+
+      <div class="form-control">
+        <label>Surname*</label>
+        <input formControlName="lastName" (input)="toUpper($event, 'lastName')" placeholder="Enter Surname" />
+        <small class="error-text" *ngIf="isInvalid('lastName','required')">Surname is required</small>
+        <small class="error-text" *ngIf="isInvalid('lastName','pattern')">Only alphabets allowed</small>
+      </div>
+
+      <div class="form-control">
+        <label>Mother's Name*</label>
+        <input formControlName="motherName" (input)="toUpper($event, 'motherName')" placeholder="Enter Mother's Name" />
+        <small class="error-text" *ngIf="isInvalid('motherName','required')">Mother's Name is required</small>
+        <small class="error-text" *ngIf="isInvalid('motherName','pattern')">Only alphabets allowed</small>
+      </div>
+    </fieldset>
+
+    <!-- =============================
+       2. ADDRESS
+  ============================== -->
+    <fieldset>
+      <legend>2. Address for Communication</legend>
+
+      <div class="form-control">
+        <label>Address Line 1*</label>
+        <input formControlName="address1" (input)="toUpper($event, 'address1')" placeholder="Enter Address Line 1" />
+        <small class="error-text" *ngIf="isInvalid('address1','required')">Address Line 1 is Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Address Line 2*</label>
+        <input formControlName="address2" (input)="toUpper($event, 'address2')" placeholder="Enter Address Line 2" />
+      </div>
+
+      <div class="form-control">
+        <label>Address Line 3</label>
+        <input formControlName="address3" (input)="toUpper($event, 'address3')" placeholder="Enter Address Line 3" />
+      </div>
+
+      <div class="form-control">
+        <label>City*</label>
+        <input formControlName="city" (input)="toUpper($event, 'city')" placeholder="Enter City" />
+        <small class="error-text" *ngIf="isInvalid('city','required')">City is Required</small>
+        <small class="error-text" *ngIf="isInvalid('city','pattern')">
+          Only alphabets allowed
+        </small>
+      </div>
+
+      <div class="form-control">
+        <label>District*</label>
+        <input formControlName="district" (input)="toUpper($event, 'district')" placeholder="Enter District" />
+        <small class="error-text" *ngIf="isInvalid('district','required')">District is Required</small>
+        <small class="error-text" *ngIf="isInvalid('district','pattern')">Only alphabets allowed</small>
+      </div>
+
+      <div class="form-control">
+        <label>Pin Code*</label>
+        <input formControlName="pin" minlength="6" maxlength="6" pattern="^[0-9]{6}$" (input)="allowOnlyNumbers($event)"
+          placeholder="Enter Pin Code" />
+        <small class="error-text" *ngIf="isInvalid('pin','required')"> Pin Code is required</small>
+        <small class="error-text" *ngIf="isInvalid('pin','pattern')">PIN Code must be exactly 6 digits</small>
+      </div>
+
+      <div class="form-control">
+        <label>State</label>
+        <select formControlName="state">
+          <option value="" disabled>Select State</option>
+          <option>Andaman and Nicobar Islands</option>
+          <option>Andhra Pradesh</option>
+          <option>Arunachal Pradesh</option>
+          <option>Assam</option>
+          <option>Bihar</option>
+          <option>Chandigarh</option>
+          <option>Chhattisgarh</option>
+          <option>Dadra and Nagar Haveli and Daman and Diu</option>
+          <option>Delhi (National Capital Territory)</option>
+          <option>Goa</option>
+          <option>Gujarat</option>
+          <option>Haryana</option>
+          <option>Himachal Pradesh</option>
+          <option>Jammu and Kashmir</option>
+          <option>Jharkhand</option>
+          <option>Karnataka</option>
+          <option>Kerala</option>
+          <option>Ladakh</option>
+          <option>Lakshadweep</option>
+          <option>Madhya Pradesh</option>
+          <option>Maharashtra</option>
+          <option>Manipur</option>
+          <option>Meghalaya</option>
+          <option>Mizoram</option>
+          <option>Nagaland</option>
+          <option>Odisha</option>
+          <option>Punjab</option>
+          <option>Puducherry</option>
+          <option>Rajasthan</option>
+          <option>Sikkim</option>
+          <option>Tamil Nadu</option>
+          <option>Telangana</option>
+          <option>Tripura</option>
+          <option>Uttar Pradesh</option>
+          <option>Uttarakhand</option>
+          <option>West Bengal</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('state','required')">State is Required</small>
+      </div>
+
+
+    </fieldset>
+
+    <!-- =============================
+       3. PERSONAL DETAILS
+  ============================== -->
+    <fieldset>
+      <legend>3. Personal Details</legend>
+
+      <div class="form-control">
+        <label>Aadhaar Number*</label>
+        <input formControlName="aadhaar" minlength="12" maxlength="12" pattern="^[0-9]{12}$"
+          (input)="allowOnlyNumbers($event)" placeholder="Enter Aadhaar Number" />
+        <small class="error-text" *ngIf="isInvalid('aadhaar','required')">Aadhaar Number is Required</small>
+        <small class="error-text" *ngIf="isInvalid('aadhaar','pattern')">Aadhaar must be exactly 12 digits</small>
+      </div>
+
+      <div class="form-control">
+        <label>Gender*</label>
+        <select formControlName="gender">
+          <option value="" disabled>Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('gender','required')">Gender is Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Divyangjan*</label>
+        <select formControlName="divyang">
+          <option value="" disabled>Select</option>
+          <option>YES</option>
+          <option>NO</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('divyang','required')">Divyangjan is Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Orphan*</label>
+        <select formControlName="orphan">
+          <option value="" disabled>Select</option>
+          <option>YES</option>
+          <option>NO</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('orphan','required')">Orphan is Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Date of Birth (as per School Leaving Certificate)*</label>
+        <input type="date" formControlName="dob" max="2008-08-01" />
+        <small class="error-text" *ngIf="isInvalid('dob','required')">Please Select Date of Birth.</small>
+      </div>
+
+      <div class="form-control">
+        <label>Age (as on 01/08/2026)</label>
+        <input formControlName="age" readonly />
+        <small class="error-text" *ngIf="personalInfoForm.get('dob')?.hasError('ageInvalid')">
+          Age must be between 18 and 38 years as on 01-08-2026
+        </small>
+      </div>
+    </fieldset>
+
+    <!-- =============================
+       4. CATEGORY DETAILS
+  ============================== -->
+    <fieldset>
+      <legend>4. Category Details</legend>
+
+      <div class="form-control">
+        <label>Category*</label>
+        <select formControlName="category">
+          <option value="" disabled selected>Select Category</option>
+          <option value="01-OPEN">01-OPEN</option>
+          <option value="02-SC">02-SC</option>
+          <option value="03-ST">03-ST</option>
+          <option value="04-VJ(A)">04-VJ(A)</option>
+          <option value="05-NT(B)">05-NT(B)</option>
+          <option value="06-NT(C)">06-NT(C)</option>
+          <option value="07-NT(D)">07-NT(D)</option>
+          <option value="08-OBC">08-OBC</option>
+          <option value="09-SBC">09-SBC</option>
+          <option value="10-EWS">10-EWS</option>
+          <option value="11-SEBC">11-SEBC</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('category','required')">Please Select Category</small>
+        <small class="error-text" *ngIf="isInvalid('category','pattern')">Invalid Category Selected</small>
+      </div>
+
+      <div class="form-control" *ngIf="!hideSubCaste">
+        <label>Sub Caste</label>
+        <input formControlName="subCaste" (input)="toUpper($event, 'subCaste')"
+          placeholder="Please Enter Sub Caste if any" />
+
+        <small class="error-text" *ngIf="isInvalid('subCaste','required')">SubCaste is Required</small>
+        <small class="error-text" *ngIf="isInvalid('subCaste','pattern')">
+          Only letters, numbers and '-' allowed
+        </small>
+      </div>
+
+      <div class="form-control">
+        <label>Do you belong to Minority Community*</label>
+        <select formControlName="minority">
+          <option value="" disabled>Select</option>
+          <option value="MUSLIM">MUSLIM</option>
+          <option value="CHIRSTIAN">CHIRSTIAN</option>
+          <option value="SIKH">SIKH</option>
+          <option value="PARSI">PARSI</option>
+          <option value="BUDDHIST">BUDDHIST</option>
+          <option value="JAIN">JAIN</option>
+          <option value="NO">NO</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('minority','required')">Do you belong to Minority Community</small>
+      </div>
+
+
+
+      <div class="form-control">
+        <label>Domicile of Maharashtra*</label>
+        <select formControlName="domicile">
+          <option value="" disabled>Select</option>
+          <option>YES</option>
+          <option>NO</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('domicile','required')">Domicile of Maharashtra is Required</small>
+      </div>
+    </fieldset>
+
+    <!-- =============================
+       5. EXAM DETAILS
+  ============================== -->
+    <fieldset>
+      <legend>5.Examination Details*</legend>
+
+      <div class="form-control">
+        <label>Optional Subject (Mains)*</label>
+        <select formControlName="optionalSubject">
+          <option value="" disabled>Select</option>
+          <option value="AGRICULTURE">AGRICULTURE</option>
+          <option value="ANIMAL HUSBANDRY AND VETERINARY SCIENCE">ANIMAL HUSBANDRY AND VETERINARY SCIENCE</option>
+          <option value="ANTHROPOLOGY">ANTHROPOLOGY</option>
+          <option value="BOTANY">BOTANY</option>
+          <option value="CHEMISTRY">CHEMISTRY</option>
+          <option value="CIVIL ENGINEERING">CIVIL ENGINEERING</option>
+          <option value="COMMERCE AND ACCOUNTANCY">COMMERCE AND ACCOUNTANCY</option>
+          <option value="ECONOMICS">ECONOMICS</option>
+          <option value="ELECTRICAL ENGINEERING">ELECTRICAL ENGINEERING</option>
+          <option value="ENGLISH">ENGLISH</option>
+          <option value="GEOGRAPHY">GEOGRAPHY</option>
+          <option value="GEOLOGY">GEOLOGY</option>
+          <option value="HISTORY">HISTORY</option>
+          <option value="HINDI">HINDI</option>
+          <option value="LAW">LAW</option>
+          <option value="MANAGEMENT">MANAGEMENT</option>
+          <option value="MARATHI">MARATHI</option>
+          <option value="MATHEMATICS">MATHEMATICS</option>
+          <option value="MECHANICAL ENGINEERING">MECHANICAL ENGINEERING</option>
+          <option value="MEDICAL SCIENCE">MEDICAL SCIENCE</option>
+          <option value="PHILOSOPHY">PHILOSOPHY</option>
+          <option value="PHYSICS">PHYSICS</option>
+          <option value="POLITICAL SCIENCE AND INTERNATIONAL RELATIONS">POLITICAL SCIENCE AND INTERNATIONAL RELATIONS
+          </option>
+          <option value="PSYCHOLOGY">PSYCHOLOGY</option>
+          <option value="PUBLIC ADMINISTRATION">PUBLIC ADMINISTRATION</option>
+          <option value="SANSKRIT">SANSKRIT</option>
+          <option value="SOCIOLOGY">SOCIOLOGY</option>
+          <option value="STATISTICS">STATISTICS</option>
+          <option value="ZOOLOGY">ZOOLOGY</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('optionalSubject','required')">Optional Subject is Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Examination Centres*</label>
+        <select formControlName="examCenter">
+          <option value="" disabled>Select</option>
+          <option value="AMRAVATI">AMRAVATI</option>
+          <option value="AURANGABAD">AURANGABAD</option>
+          <option value="KOLHAPUR">KOLHAPUR</option>
+          <option value="MUMBAI">MUMBAI</option>
+          <option value="NAGPUR">NAGPUR</option>
+          <option value="NASHIK">NASHIK</option>
+          <option value="PUNE">PUNE</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('examCenter','required')">Examination Centres is Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Disputed Maharashtra-Karnataka Border*</label>
+        <select formControlName="borderDispute">
+          <option value="" disabled>Select</option>
+          <option>YES</option>
+          <option>NO</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('borderDispute','required')">Disputed Maharashtra-Karnataka Border is
+          Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Family Annual Income*</label>
+        <select formControlName="familyIncome">
+          <option value="" disabled>Select</option>
+          <option value="Upto 150000">Upto 150000</option>
+          <option value="150001-300000">150001-300000</option>
+          <option value="300001-450000">300001-450000</option>
+          <option value="450001-600000">450001-600000</option>
+          <option value="600001-800000">600001-800000</option>
+          <option value="Above 800000">Above 800000</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('familyIncome','required')">Family Annual Income is Required</small>
+      </div>
+
+
+
+      <!-- ============================= -->
+      <!-- TRAINING DETAILS -->
+      <!-- ============================= -->
+
+      <div>
+
+        <div class="form-control">
+
+          <label>Have you previously taken advantage of any of these organizations for training?*</label>
+          <label>तुम्ही यापूर्वी प्रशिक्षणासाठी यापैकी कोणत्याही संस्थेचा लाभ घेतला आहात का?</label>
+          <!-- <label>Did you join any of these institutions for training before?</label> -->
+
+          <div class="radio-group">
+
+            <label>
+              <input type="radio" formControlName="isTrainedBefore" value="Yes" />
+              Yes
+            </label>
+
+            <label>
+              <input type="radio" formControlName="isTrainedBefore" value="No" />
+              No
+            </label>
+
+          </div>
+
+          <!-- Validation -->
+          <small class="error-text" *ngIf="isInvalid('isTrainedBefore','required')">
+            Please select Yes or No
+          </small>
+
+        </div>
+
+
+        <!-- Show table only when YES -->
+        <div *ngIf="personalInfoForm.get('isTrainedBefore')?.value === 'Yes'">
+
+          <div formArrayName="institutions">
+
+            <div class="table-wrapper">
+
+              <table class="training-table">
+
+                <thead>
+                  <tr>
+                    <th>Sr.No</th>
+                    <th>Select</th>
+                    <th>Institute Name</th>
+                    <th>Training Year</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <tr *ngFor="let inst of institutions.controls; let i = index" [formGroupName]="i">
+
+                    <td>{{ i + 1 }}</td>
+
+                    <td>
+                      <input type="checkbox" formControlName="selected">
+                    </td>
+
+                    <td>
+                      {{ inst.get('institutions')?.value }}
+                      <!-- Note for PCMC -->
+                      <div class="note-text"
+                        *ngIf="inst.get('institutions')?.value === 'PIMPRI CHINCHWAD MUNICIPAL CORPORATION(PCMC), PUNE'">
+
+                        <b>Note:</b> If you want to take admission for training in
+                        <b>PIMPRI CHINCHWAD MUNICIPAL CORPORATION (PCMC), PUNE</b>,<br>
+                        you must be a resident of Pimpri Chinchwad Municipal Corporation (PCMC)
+                        area and submit proof of residency.
+
+                      </div>
+                    </td>
+
+                    <td>
+
+                      <input type="text" formControlName="trainingYear" maxlength="4" placeholder="1990-2026"
+                        (input)="allowOnlyNumbers($event)" [disabled]="!inst.get('selected')?.value">
+
+                      <small class="error-text" *ngIf="
+    inst.get('trainingYear')?.errors?.['required'] &&
+    (inst.get('trainingYear')?.dirty || inst.get('trainingYear')?.touched) &&
+    inst.get('selected')?.value
+  ">
+                        Training year is required
+                      </small>
+
+                      <small class="error-text" *ngIf="
+    inst.get('trainingYear')?.errors?.['pattern'] &&
+    (inst.get('trainingYear')?.dirty || inst.get('trainingYear')?.touched) &&
+    inst.get('selected')?.value
+  ">
+                        Enter valid year between 1990 and 2026
+                      </small>
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </fieldset>
+
+    <!-- =============================
+       6. EDUCATION
+  ============================== -->
+    <fieldset>
+      <legend>Education Details</legend>
+
+      <div class="form-control">
+        <label>Educational Qualification*</label>
+        <select formControlName="qualification">
+          <option value="" disabled>Select</option>
+          <option value="UNDERGRADUATE">UNDERGRADUATE</option>
+          <option value="GRADUATE">GRADUATE</option>
+          <option value="POSTGRADUATE">POSTGRADUATE</option>
+        </select>
+        <small class="error-text" *ngIf="isInvalid('qualification','required')">Educational Qualification is
+          Required</small>
+      </div>
+
+      <div class="form-control">
+        <label>Year of Passing*</label>
+        <input type="text" formControlName="passingYear" maxlength="4" (input)="allowOnlyNumbers($event)"
+          placeholder="1990-2026" />
+
+        <small class="error-text" *ngIf="isInvalid('passingYear','required')">
+          Year of Passing is Required
+        </small>
+
+        <small class="error-text" *ngIf="isInvalid('passingYear','pattern')">
+          Enter valid year between 1990 and 2026
+        </small>
+      </div>
+
+      <div class="form-control">
+        <label>Name of the University*</label>
+        <input formControlName="university" (input)="toUpper($event, 'university')"
+          placeholder="Enter Name of the University" />
+        <small class="error-text" *ngIf="isInvalid('university','required')">Name of the University is Required</small>
+      </div>
+    </fieldset>
+
+    <!-- =============================
+     7. PHOTO & SIGNATURE
+============================== -->
+    <fieldset>
+      <legend>7. Photo & Signature Upload</legend>
+
+      <!-- ================= PHOTO ================= -->
+
+      <div class="form-control">
+
+        <label>Upload Photograph*</label>
+
+        <input type="file" #photoInput accept=".jpg,.jpeg" (change)="onPhotoUpload($event)" [disabled]="isLocked" />
+
+        <div class="upload-note">
+          Only JPG/JPEG allowed. File size must be between 10 KB and 50 KB.
+          Dimensions: 200 × 230 pixels
+        </div>
+
+        <!-- ERROR -->
+        <div *ngIf="photoError" class="error-test">
+          {{ photoError }}
+        </div>
+
+        <!-- ✅ FILE NAME -->
+        <div *ngIf="photoFileName" class="file-success">
+          Uploaded: {{ photoFileName }} ✅
+        </div>
+
+        <!-- ✅ IMAGE PREVIEW -->
+        <img *ngIf="photoPreview" [src]="photoPreview" class="preview-img" alt="Photo Preview" />
+
+      </div>
+
+
+      <!-- ================= SIGNATURE ================= -->
+
+      <div class="form-control">
+
+        <label>Upload Signature*</label>
+
+        <input type="file" #signInput accept=".jpg,.jpeg" (change)="onSignUpload($event)" [disabled]="isLocked" />
+
+        <!-- ✅ FILE NAME -->
+        <div *ngIf="signatureFileName" class="file-success">
+          Uploaded: {{ signatureFileName }} ✅
+        </div>
+
+        <!-- ✅ Upload Note -->
+        <div class="upload-note">
+          Only JPG/JPEG allowed. File size must be between 10 KB and 30 KB.
+          Dimensions: 140 × 60 pixels.
+        </div>
+
+        <!-- ERROR -->
+        <div *ngIf="signatureError" class="error-test">
+          {{ signatureError }}
+        </div>
+
+        <!-- ✅ IMAGE PREVIEW -->
+        <img *ngIf="signaturePreview" [src]="signaturePreview" class="preview-img" alt="Signature Preview" />
+
+      </div>
+
+    </fieldset>
+
+
+
+    <!-- =============================
+       8. UNDERTAKING
+  ============================== -->
+    <fieldset>
+      <legend>Undertaking</legend>
+
+      <div class="form-control" style="grid-column: 1 / -1;">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="undertaking" [disabled]="isLocked" />
+          <span>
+            1. I hereby declare that all statements made in this application are true, complete and correct to the best
+            of
+            my knowledge and belief. In the event of any information being found false or incorrect... <br><br>
+
+            2. I understand that it is compulsory for me to appear for UPSC Preliminary Examination to be held in May,
+            2026.
+          </span>
+        </label>
+
+        <small class="error-text" *ngIf="isInvalid('undertaking','required')">
+          You must accept the undertaking
+        </small>
+      </div>
+    </fieldset>
+    <div class="button-group">
+      <button type="submit" [disabled]="isLocked">
+
+        {{ isExistingApplication ? 'Update & Continue' : 'Save & Continue' }}
+
+      </button>
+
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,47 @@
+<div class="login-page">
+
+  <h2>Student Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <!-- Email or Mobile -->
+    <div class="form-field">
+      <label>Mobile Number / Email id / Registration Number<span class="required">*</span></label>
+      <input type="text" formControlName="identifier" placeholder="Enter Mobile Number, Email id or Registration Number"
+        data-testid="identifier" />
+      <div *ngIf="submitted && f['identifier']?.errors">
+        <small *ngIf="f['identifier']?.errors?.['required']">
+          Enter valid 10-digit Mobile Number, Email id, or Registration Number
+        </small>
+        <small *ngIf="f['identifier']?.errors?.['invalid']">
+          Enter valid 10-digit Mobile Number, Email id, or Registration Number
+        </small>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-field">
+      <label>Password <span class="required">*</span></label>
+      <div class="password-field">
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter password"
+          data-testid="password" maxlength="12" minlength="8" />
+        <span class="eye" (click)="togglePassword()">👁️</span>
+      </div>
+      <div *ngIf="submitted && f['password']?.errors">
+        <small>Password is required</small>
+      </div>
+    </div>
+
+    <button type="submit" data-testid="loginBtn">Login</button>
+    <!-- Registration link -->
+
+    <a routerLink="/forgot-password">Forgot Password?</a>
+
+    <p class="register-link">
+      New user?
+      <a routerLink="/registration">Click here for New Registration</a>
+      <!-- <a (click)="goRegister()">Click here for New Registration</a> -->
+    </p>
+  </form>
+
+</div>
