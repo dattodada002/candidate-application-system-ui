@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "siac-cet-frontend": {
+    "cas-cet-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -55,10 +55,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "siac-cet-frontend:build:production"
+              "buildTarget": "cas-cet-frontend:build:production"
             },
             "development": {
-              "buildTarget": "siac-cet-frontend:build:development"
+              "buildTarget": "cas-cet-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

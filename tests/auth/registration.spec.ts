@@ -9,6 +9,6 @@ test('Registration Page Test', async({page})=>{
  await page.click('text=Registration');
 
   // Verify registration page heading
-await expect(page.locator('h2')).toContainText('Welcome to SIAC CET Portal');
+await expect(page.locator('h2')).toContainText('Welcome to Online Application Portal');
 
 });

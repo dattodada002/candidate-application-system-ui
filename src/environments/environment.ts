@@ -5,6 +5,6 @@ export const environment = {
   AWS_ACCESS_KEY_ID:"your-access-key",
   AWS_SECRET_ACCESS_KEY:"your-secret-key",
   AWS_REGION:"your-region",
-  AWS_BUCKET_NAME:"siac-cet-uploads",
+  AWS_BUCKET_NAME:"cas-cet-uploads",
 
 };

@@ -1,4 +1,4 @@
-# siac-ui
+# Candidate Application System UI
 
 Application UI developed using Angular.
 

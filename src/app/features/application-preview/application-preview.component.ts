@@ -106,9 +106,9 @@ export class ApplicationPreview implements OnInit {
     <!-- CENTER TEXT -->
     <div class="header-text">
       <div class="gov-title">Government of Maharashtra</div>
-      <div class="inst-title">STATE INSTITUTE FOR ADMINISTRATIVE CAREERS (SIAC)</div>
+      <div class="inst-title">Candidate Application System (CAS)</div>
       <div class="exam-title">
-        Application Form For Entrance Examination (SIAC-CET-2026-2027)
+        Application Form For Entrance Examination (CAS-2026-2027)
       </div>
     </div>
 
