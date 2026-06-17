@@ -45,6 +45,8 @@
     "pdfkit": "^0.17.2",
     "rxjs": "~7.8.0",
     "sha512": "^0.0.1",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
